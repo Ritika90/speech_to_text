@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Recording Sid</th>
+      <th>Download</th>
+      <th>Check text</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= link_to "Call", call_path %>
+    <% @recordings.each do |recording| %>
+      <tr>
+        <td><%= recording.sid %></td>
+        <td><%= link_to "Download", "https://api.twilio.com/"+recording.uri.split(".").first+".mp3?Download=true" %></td>
+        <!-- <td><%#= link_to "Speech to text", speech_to_text_path(:path => "https://api.twilio.com/"+recording.uri.split(".").first+".wav?Download=true") %></td> -->
+        <td><%= link_to "Speech to text", speech_to_text_path(:path => "https://api.twilio.com/"+recording.uri.split(".").first+".wav") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
